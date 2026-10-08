@@ -180,6 +180,22 @@ p{margin:0}
 .product-inline p{color:var(--ink-2);margin:.3rem 0 .7rem;font-size:.95rem}
 @media (min-width:40rem){.product-inline{grid-template-columns:7rem 1fr}}
 
+/* review band */
+.review{--rv-bg:#1b3140;--rv-fg:#fbf8f2;--rv-acc:#e7c060;background:var(--rv-bg);color:var(--rv-fg)}
+.review .wrap{display:grid;gap:2rem;align-items:center}
+@media (min-width:64rem){.review .wrap{grid-template-columns:1fr 13rem;gap:4rem}}
+.review .stars{display:flex;gap:.3rem;color:var(--rv-acc)}
+.review .stars svg{width:1.6rem;height:1.6rem;fill:currentColor}
+.review blockquote{margin:1rem 0 0;font-family:var(--serif);font-style:italic;font-size:clamp(1.8rem,4.2vw,3.2rem);line-height:1.15;text-wrap:balance;color:var(--rv-fg)}
+.review blockquote::before{content:"“"}
+.review blockquote::after{content:"”"}
+.review .who{margin-top:1.2rem;font-size:1rem;color:var(--rv-fg);opacity:.85}
+.review .who b{opacity:1;font-weight:700}
+.review .src{display:inline-block;margin-top:.9rem;font-weight:600;color:var(--rv-acc);text-decoration:none;font-size:.95rem}
+.review .src:hover{text-decoration:underline}
+.review .page{max-width:13rem;justify-self:center;border-color:transparent}
+.review .eyebrow{color:var(--rv-acc)}
+
 /* footer */
 footer{border-top:1px solid var(--rule);padding-block:2.5rem;font-size:.92rem;color:var(--ink-2)}
 footer .wrap{display:grid;gap:1.5rem}
