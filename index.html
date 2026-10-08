@@ -162,9 +162,10 @@
         <p class="eyebrow">By email</p>
         <h2 style="font-size:1.6rem;margin-top:.4rem">The Advisory Starter Set</h2>
         <p style="margin-top:.5rem">Three anchor charts and a one-page quickstart that are not on the store, plus one new lesson idea a month. No sales emails between.</p>
-        <form id="optin-form">
+        <form id="optin-form" action="https://assets.mailerlite.com/jsonp/2695731/forms/200760016947381572/subscribe" method="post" target="_blank">
           <label for="optin-email" style="position:absolute;left:-9999px">Email</label>
-          <input id="optin-email" type="email" required placeholder="you@school.org" autocomplete="email">
+          <input id="optin-email" type="email" name="fields[email]" required placeholder="you@school.org" autocomplete="email">
+          <input type="hidden" name="ml-submit" value="1"><input type="hidden" name="anticsrf" value="true">
           <button type="submit">Send me the set</button>
         </form>
         <p class="done" id="optin-done" hidden>Thanks. Check your inbox for the starter set.</p>
@@ -226,7 +227,13 @@
 (function(){
   var f=document.getElementById('optin-form'),d=document.getElementById('optin-done');
   if(!f)return;
-  f.addEventListener('submit',function(e){e.preventDefault();f.hidden=true;d.hidden=false;});
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var b=f.querySelector('button');b.disabled=true;b.textContent='Sending…';
+    fetch(f.action,{method:'POST',body:new FormData(f)}).then(function(r){return r.json();}).then(function(j){
+      if(j&&j.success){f.hidden=true;d.hidden=false;}else{f.submit();}
+    }).catch(function(){f.submit();});
+  });
 })();
 </script>
 
